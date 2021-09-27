@@ -1,0 +1,293 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger to call endpoints from pulpo vehicles",
+    "version": "1.0.0",
+    "title": "Swagger Pulpo test",
+    "contact": {
+      "email": "joseing03@hotmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "vehicle",
+      "description": "Everything about your Vehicles"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/vehicle/healtCheck": {
+      "get": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "check status microservice",
+        "description": "Endpoint to check status of microservice",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Healthcheck"
+            }
+          }
+        }
+      }
+    },
+    "/vehicle/{vehicleId}": {
+      "get": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Find vehicle by ID",
+        "description": "Returns a single vehicle",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of vehicle to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Vehicle not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Updates a vehicle",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of vehicle that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Vehicle object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleWithoutId"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Deletes a vehicle",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "Vehicle id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Vehicle not found"
+          }
+        }
+      }
+    },
+    "/vehicle": {
+      "post": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Add a new vehicle",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "vehicle object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleWithoutId"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Vehicle": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "identification": {
+          "type": "string"
+        },
+        "marca": {
+          "type": "string"
+        },
+        "modelo": {
+          "type": "number"
+        },
+        "color": {
+          "type": "string"
+        },
+        "fechaIngreso": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "boolean"
+        },
+        "asignado": {
+          "type": "boolean"
+        },
+        "novedad": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asunto": {
+                "type": "string"
+              },
+              "descripcion": {
+                "type": "string"
+              },
+              "tipo": {
+                "type": "string",
+                "enum": ["Mecanica", "Multa", "Mantenimiento", "Accidente"]
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Vehicle"
+      }
+    },
+    "VehicleWithoutId": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "identification": {
+          "type": "string"
+        },
+        "marca": {
+          "type": "string"
+        },
+        "modelo": {
+          "type": "number"
+        },
+        "color": {
+          "type": "string"
+        },
+        "fechaIngreso": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "boolean"
+        },
+        "asignado": {
+          "type": "boolean"
+        },
+        "novedad": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asunto": {
+                "type": "string"
+              },
+              "descripcion": {
+                "type": "string"
+              },
+              "tipo": {
+                "type": "string",
+                "enum": ["Mecanica", "Multa", "Mantenimiento", "Accidente"]
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Vehicle"
+      }
+    },
+    "Healthcheck":{
+      "type": "object",
+      "properties": {
+        "health": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
+}
