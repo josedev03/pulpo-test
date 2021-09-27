@@ -23,7 +23,7 @@ export class VehicleService {
     }
   }
 
-  async update(id: string, payload: CreateVehicleDTO) {
+  async update(id: string, payload: CreateVehicleDTO): Promise<string> {
     await this.existsVehicle(id)
     await this.vehicleRepository.update(id, payload);
     return "vehicle updated"
