@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "dee2e6d1-7a4d-4924-a5c5-19ed7ea72f78",
+		"name": "Pulpo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getVehicleForId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/vehicle/6153d56e097f3f500e194aa8",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"6153d56e097f3f500e194aa8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createVehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"identification\": \"KKK000\",\n\t\"marca\": \"Ford\",\n\t\"modelo\": 2012,\n\t\"color\": \"rojo\",\n\t\"fechaIngreso\": \"2021/09/12\",\n\t\"estado\": true,\n\t\"asignado\": false,\n\t\"novedad\": [\n\t\t{\"asunto\": \"fallo 3\", \"descripcion\": \"fallo en el motor\", \"tipo\": \"Mecanica\"}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVehicle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"identification\": \"AAA111\",\n\t\"marca\": \"Ford\",\n\t\"modelo\": 2012,\n\t\"color\": \"rojo\",\n\t\"fecha_ingreso\": \"2021/09/12\",\n\t\"estado\": true,\n\t\"asignadoa\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/61510f51d816cd111f0780ef",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"61510f51d816cd111f0780ef"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteVehicle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/vehicle/614d41544944a1baa02cb24fa",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"614d41544944a1baa02cb24fa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filterVehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"novedad\": {\n        \"tipo\": \"Multa\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/filter",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createNovelty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"novedad\": {\n        \"descripcion\": \"ocurre sismo cierre carretera\",\n        \"asunto\": \"falla envigado\",\n        \"tipo\": \"Multa\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/novedad/6153d56e097f3f500e194aa8",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"novedad",
+						"6153d56e097f3f500e194aa8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healtCheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/vehicle/healtCheck",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"healtCheck"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

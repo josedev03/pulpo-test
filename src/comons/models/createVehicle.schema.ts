@@ -37,3 +37,42 @@ export const vehicleSchema = Joi.object({
     })
     .optional()
 })
+
+export const filterVehicleSchema = Joi.object({
+  'id': Joi
+    .string()
+    .optional(),
+  'identification': Joi
+    .string()
+    .optional(),
+  'marca': Joi
+    .string()
+    .optional(),
+  'modelo': Joi
+    .number()
+    .optional(),
+  'color': Joi
+    .string()
+    .optional(),
+  'fechaIngreso': Joi
+    .string()
+    .optional(),
+  'estado': Joi
+    .boolean()
+    .optional(),
+  'asignado':  Joi
+    .boolean()
+    .optional(),
+  'novedad': Joi
+    .object({
+      'asunto': Joi
+        .string().optional(),
+      'descripcion': Joi
+        .string().optional(),
+      'tipo': Joi
+        .string()
+        .valid('Mecanica', 'Multa', 'Mantenimiento', 'Accidente')
+        .optional()
+    })
+    .optional()
+})

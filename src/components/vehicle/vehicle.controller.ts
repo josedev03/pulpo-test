@@ -4,7 +4,7 @@ import { Vehicle } from './entity/vehicle.entity';
 import { VehicleService } from './vehicle.service';
 import { Response } from 'express'
 import { JoiValidationPipe } from 'src/comons/pipes/joi-validation.pipe';
-import { vehicleSchema } from 'src/comons/models/createVehicle.schema';
+import { filterVehicleSchema, vehicleSchema } from 'src/comons/models/createVehicle.schema';
 
 @Controller('vehicle')
 export class VehicleController {
@@ -18,7 +18,7 @@ export class VehicleController {
 
   @Get('/:id')
   async getVehicleForId(@Param('id') id: string) {
-    return await this.vehicleService.get(id);
+    return await this.vehicleService.getVehicleById(id);
   }
   
   @Put('/:id')
@@ -36,5 +36,15 @@ export class VehicleController {
   async createVehicle(@Body(new JoiValidationPipe(vehicleSchema)) payload: CreateVehicleDTO): Promise<Vehicle> {
     const result = await this.vehicleService.create(payload);
     return result;
+  }
+
+  @Post('/filter')
+  async getVehicleByFilter(@Body(new JoiValidationPipe(filterVehicleSchema)) payload){
+    return await this.vehicleService.getVehicleByFilter(payload);
+  }
+
+  @Post('/novedad/:id')
+  async createNoveltyVehicle(@Param('id') id: string, @Body(new JoiValidationPipe(filterVehicleSchema)) payload){
+    return await this.vehicleService.createNoveltyVehicle(id, payload);
   }
 }

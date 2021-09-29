@@ -1,12 +1,14 @@
-import { Entity, ObjectID, ObjectIdColumn, Column} from 'typeorm';
+import {Column} from 'typeorm';
 
 export class Novelty {
-  @Column() asunto: String;
-  @Column() descripcion: String;
-	@Column('enum') tipo: 'mecanico' | 'multa' | 'mantenimiento' | 'accidente';
+  @Column() asunto: string;
+  @Column() descripcion: string;
+	@Column() tipo: string;
 	
 
-  constructor(novelty?: Partial<Novelty>) {
-    Object.assign(this, novelty);
+  constructor(asunto: string, descripcion: string, tipo: string){
+    this.asunto = asunto;
+    this.descripcion = descripcion;
+    this.tipo = tipo;
   }
 }

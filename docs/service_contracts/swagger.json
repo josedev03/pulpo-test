@@ -82,7 +82,7 @@
         "tags": [
           "vehicle"
         ],
-        "summary": "Updates a vehicle",
+        "summary": "Update a vehicle",
         "description": "",
         "consumes": [
           "application/json"
@@ -118,7 +118,7 @@
         "tags": [
           "vehicle"
         ],
-        "summary": "Deletes a vehicle",
+        "summary": "Delete a vehicle",
         "description": "",
         "produces": [
           "application/json"
@@ -163,6 +163,87 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/VehicleWithoutId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/vehicle/filter": {
+      "post": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "Get vehicle by filter",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "filters of vehicle",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleWithoutId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Vehicle"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/vehicle/novedad/{vehicleId}": {
+      "post": {
+        "tags": [
+          "vehicle"
+        ],
+        "summary": "create novelty to vehicle",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of vehicle that needs to be find",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "novelty object that needs to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/novelty"
             }
           }
         ],
@@ -278,6 +359,21 @@
       },
       "xml": {
         "name": "Vehicle"
+      }
+    },
+    "novelty": {
+      "type": "object",
+      "properties": {
+        "asunto": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string",
+          "enum": ["Mecanica", "Multa", "Mantenimiento", "Accidente"]
+        }
       }
     },
     "Healthcheck":{

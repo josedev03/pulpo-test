@@ -11,7 +11,7 @@ export class Vehicle {
 	@Column() fechaIngreso: String;
 	@Column() estado: Boolean;
 	@Column() asignado: Boolean;
-	//@Column(type=>Novelty) novedad: Novelty;
+	@Column(type=>Novelty) novedad: Novelty[];
 
   constructor(vehicle?: Partial<Vehicle>) {
     Object.assign(this, vehicle);
